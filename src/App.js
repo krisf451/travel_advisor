@@ -9,12 +9,25 @@ import List from "./components/List/List";
 
 function App() {
   const [places, setPlaces] = useState([]);
+  const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 });
+  const [bounds, setBounds] = useState(null);
+
   useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => {
+        setCoordinates({ lat: latitude, lng: longitude });
+      }
+    );
+  }, []);
+
+  useEffect(() => {
+    console.log(coordinates, bounds);
     getPlacesData().then((data) => {
       setPlaces(data);
       console.log(data);
     });
-  }, []);
+  }, [bounds, coordinates]);
+
   return (
     <>
       <CssBaseline />
@@ -23,8 +36,21 @@ function App() {
         <Grid item xs={12} md={4}>
           <List />
         </Grid>
-        <Grid item xs={12} md={4}>
-          <Map />
+        <Grid
+          item
+          xs={12}
+          md={8}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Map
+            setBounds={setBounds}
+            setCoordinates={setCoordinates}
+            coordinates={coordinates}
+          />
         </Grid>
       </Grid>
     </>
