@@ -5,7 +5,7 @@ import SearchIcon from "@material-ui/icons/Search";
 
 import useStyles from "./HeaderStyles.js";
 
-const Header = ({ onPlaceChanged, onLoad }) => {
+const Header = () => {
   const classes = useStyles();
 
   return (
