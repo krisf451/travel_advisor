@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { CssBaseline, Grid } from "@material-ui/core";
-//sample change
 
 import { getPlacesData } from "./api";
 
@@ -10,9 +9,11 @@ import List from "./components/List/List";
 
 function App() {
   const [places, setPlaces] = useState([]);
+  const [childClicked, setChildClicked] = useState(null);
+
   const [coordinates, setCoordinates] = useState({});
   const [bounds, setBounds] = useState(null);
-  const [childClicked, setChildClicked] = useState(null);
+
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -29,7 +30,7 @@ function App() {
       setPlaces(data);
       setIsLoading(false);
     });
-  }, [bounds, coordinates]);
+  }, [coordinates, bounds]);
 
   return (
     <>
