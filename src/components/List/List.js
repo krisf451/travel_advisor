@@ -13,11 +13,11 @@ import useStyles from "./ListStyles.js";
 import PlaceDetails from "../../components/PlaceDetails/PlaceDetails";
 
 const List = ({ places, childClicked, isLoading }) => {
+  const [elRefs, setElRefs] = useState([]);
   const classes = useStyles();
   const [type, setType] = useState("restaurants");
   const [rating, setRating] = useState("");
 
-  const [elRefs, setElRefs] = useState([]);
   useEffect(() => {
     const refs = Array(places?.length)
       .fill()
