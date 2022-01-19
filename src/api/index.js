@@ -22,6 +22,6 @@ export const getPlacesData = async (type, sw, ne) => {
 
     return data;
   } catch (err) {
-    console.log(err.message);
+    console.log(err);
   }
 };
